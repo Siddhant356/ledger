@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet">
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <h1 class="d-flex justify-content-center">Ledger</h1>
+    <br><br>
+    <form class="form-group" method="POST">
+     {% csrf_token %}
+    <div class ="row justify-content-md-center">
+    <div class="input-group mb-3 col col-lg-3">
+  <select class="custom-select" id="inputGroupSelect01" name="lender">
+    <option selected disabled>Choose lender</option>
+    {% for user in users %}
+    <option value="{{user}}">{{user}}</option>
+    {%endfor%}
+  </select>
+  <div class="input-group-append">
+    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+  </div>
+</div>
+<div class="input-group mb-3 col col-lg-3">
+  <select class="custom-select" id="inputGroupSelect02" name="borrower">
+    <option selected disabled>Choose borrower</option>
+    {% for user in users %}
+    <option value="{{user}}">{{user}}</option>
+    {%endfor%}
+  </select>
+  <div class="input-group-append">
+    <label class="input-group-text" for="inputGroupSelect02">Options</label>
+  </div>
+</div>
+ <div class="input-group mb-3 col col-lg-3">
+    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Enter the amount" name="amount">
+  </div>
+  </div>
+  <br>
+  <div class="d-flex justify-content-center">
+ <button type="submit" class="btn btn-primary mb-2">Confirm Submit</button>
+ </div>
+</form>
+<br><br><br>
+<div class="row justify-content-center"> 
+<table class="table col-lg-8 table-hover ">
+    <thread>
+        <th scope="col">#</th> 
+      <th scope="col">Lender</th>
+      <th scope="col">Borrower</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for l in ledgers %}
+        <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{l.lender|capfirst}}</td>
+      <td>{{l.borrower|capfirst}}</td>
+      <td>{{l.amount}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+</div>
+</body>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>
